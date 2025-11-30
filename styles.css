@@ -1,0 +1,72 @@
+#logo {
+    height: 30px;
+    margin: 10px;
+}
+
+.navcenter {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#background {
+
+    background-color: rgb(94, 16, 146);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 50px;
+
+}
+
+.card {
+    min-height: 10.938rem;
+}
+
+.card-title {
+    color: purple;
+    font-size: 2rem;
+}
+
+.card-text {
+    font-size: 2rem;
+}
+
+.graphbox {
+    background-color: white;
+    border-radius: 20px;
+    height: 58vh;
+}
+
+#myChart {
+    width: 95% important;
+    height: 95% !important;
+}
+
+.ledgercolumn {
+    background: rgb(255, 255, 255);
+    padding: 1rem;
+    border-radius: 20px;
+    max-height: 58vh;
+    overflow-y: auto;
+}
+
+.ledgercolumn h5 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.body{
+    background-color:#0d0c52 ;
+}
+
+
+/* Navbar style changes */
+.navbar {
+  background: linear-gradient(90deg, #3a0ca3, #7209b7, #4361ee);
+}
+.navbar .nav-link, .navbar-brand {
+  color: #ffffff;
+}
+.navbar .nav-link:hover {
+  color: #21c7f9;
+}
+
