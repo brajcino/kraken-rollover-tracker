@@ -61,12 +61,46 @@
 
 /* Navbar style changes */
 .navbar {
-  background: linear-gradient(90deg, #3a0ca3, #7209b7, #4361ee);
+    background: linear-gradient(90deg, #3a0ca3, #7209b7, #4361ee);
 }
 .navbar .nav-link, .navbar-brand {
-  color: #ffffff;
+    color: #ffffff;
 }
 .navbar .nav-link:hover {
-  color: #21c7f9;
+    color: #21c7f9;
+    transform: translateY(-2px) scale(1.05);
+    transition: 0.2s ease-out;
 }
+
+.connect-btn {
+    background: linear-gradient(90deg, #00E5FF, #80F7FF);
+    color: #0A0933 !important;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 0 0 14px rgba(0,229,255,0.6), 0 4px 8px rgba(0,0,0,0.25);
+}
+
+.navbar .nav-link.connect-btn:hover {
+    color: #0A0933;
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 0 18px rgba(0,229,255,1), 0 6px 12px rgba(0,0,0,0.3);
+    transition: 0.2s ease-out;
+}
+
+.btn.btn-primary {
+  background-color: #5741d9 !important;
+  border-color: #5741d9 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-primary:hover {
+  background-color: #4532b3 !important;
+  border-color: #4532b3 !important;
+}
+
+#instructions-bg {
+    background-color: white;
+}
+
+
 

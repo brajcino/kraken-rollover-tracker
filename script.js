@@ -20,14 +20,14 @@ const config = {
     data: dataConfig,
 };
 
-new Chart(
-    document.getElementById('myChart'),
-    config
-);
+const chartCanvas = document.getElementById('myChart');
+if (chartCanvas) {
+  new Chart(chartCanvas, config);
+}
   
 function addTransaction(transaction) {
     const list = document.getElementById("transactionlist");
-  
+    if (!list) return;
     const li = document.createElement("li");
     li.className = "d-flex justify-content-between";
     li.innerHTML = `
@@ -51,13 +51,57 @@ function generateTransaction() {
     };
   }
   
-for (let i = 0; i < 5; i++) {
-    addTransaction(generateTransaction());
-  }
+const txList = document.getElementById("transactionlist");
+if (txList) {
+    for (let i = 0; i < 5; i++) {
+      addTransaction(generateTransaction());
+    }
+    
+
+    setInterval(() => {
+      const t = generateTransaction();
+      addTransaction(t);
+    }, 5000);
+}
+
   
 
-  setInterval(() => {
-    const t = generateTransaction();
-    addTransaction(t);
-  }, 5000);
-  
+document.addEventListener("DOMContentLoaded", () => {
+    const navConnect = document.getElementById("navConnect");
+
+    const apiForm = document.getElementById("apiKeyForm");
+    const connectScreen = document.getElementById("connectModal");
+    const apiBtn = document.getElementById("apiConnectBtn");
+    const initialSection = document.getElementById("initialApiSection");
+
+    if (apiBtn && apiForm && initialSection) {
+            apiBtn.addEventListener("click", () => {
+                initialSection.remove();
+                apiForm.classList.remove("d-none");
+            });
+    }
+
+    if (apiForm && connectScreen && navConnect) {
+        apiForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const publicKey = document.getElementById("publicApiKey").value.trim();
+            const privateKey = document.getElementById("privateApiKey").value.trim();
+
+            if (!publicKey || !privateKey) {
+                alert("Please enter both API keys.");
+                return;
+            }
+
+            const success = true;
+
+            if (success) {
+                alert("Connected successfully!");
+                navConnect.textContent = "Bob";
+                navConnect.style.pointerEvents = "none";
+                const connectModal = bootstrap.Modal.getInstance(connectScreen);
+                connectModal.hide();
+            }
+        });  
+    }
+});
