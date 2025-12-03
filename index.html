@@ -41,20 +41,27 @@
 <div class="modal fade" id="connectModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg justify-content-center">
     <div class="modal-content connect-modal text-center mx-auto">
-      <div class="modal-header border-0 flex-column align-items-center text-center">
-        <img src="assets/kraken-logo.png" class="mb-3" width="56px">
-        <h5 class="modal-title fw-bold">Connect your Kraken account</h5>
-      </div>
-      <div class="modal-body mt-3 mb-4 px-4">
-        <div class="row g-3 justify-content-center">
-          <div class="col-md-9">
-            <div id="initialApiSection">
-              <h6 class="mb-2 fw-semibold">API Key</h6>
-              <p class="small text-muted mb-3">
-                Use your Kraken API key to sync rollover fees automatically.
-              </p>
-              <button id="apiConnectBtn" class="btn btn-primary rounded-pill px-4 py-2 w-75">Connect with API</button>
-            </div>
+
+      <!-- normal connect content -->
+      <div id="connectContent">
+        <div class="modal-header border-0 flex-column align-items-center text-center">
+          <img src="assets/kraken-logo.png" class="mb-3" width="56px">
+          <h5 class="modal-title fw-bold">Connect your Kraken account</h5>
+        </div>
+
+        <div class="modal-body mt-3 mb-4 px-4">
+          <div class="row g-3 justify-content-center">
+            <div class="col-md-9">
+              <div id="initialApiSection">
+                <h6 class="mb-2 fw-semibold">API Key</h6>
+                <p class="small text-muted mb-3">
+                  Use your Kraken API key to sync rollover fees automatically.
+                </p>
+                <button id="apiConnectBtn" class="btn btn-primary rounded-pill px-4 py-2 w-75">
+                  Connect with API
+                </button>
+              </div>
+
               <form id="apiKeyForm" class="mt-3 d-none">
                 <div class="mb-3 text-start">
                   <label for="publicApiKey" class="form-label small mb-1">
@@ -80,17 +87,62 @@
                   Save & Connect
                 </button>
               </form>
+            </div>
           </div>
         </div>
+
+        <div class="modal-footer border-0 justify-content-center">
+          <small class="text-muted">
+            We do not share your API keys or rollover data with third parties.
+          </small>
+        </div>
       </div>
-      <div class="modal-footer border-0 justify-content-center">
-        <small class="text-muted">We never share your API keys or data with third parties.</small>
+
+      <!-- loading state (shown AFTER submit) -->
+      <div id="loadingSection" class="d-none py-5">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <div class="spinner-border text-primary"
+               role="status"
+               style="width: 3rem; height: 3rem; border-width: .35rem;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <h5 class="mt-4 fw-semibold">
+            Loading your ledger history...
+          </h5>
+          <p class="mt-2 mb-1 text-muted small">
+            This may take a while, please do not close this page.
+          </p>
+          <p id="loadingPageText" class="text-muted small mb-0">
+            Currently processing page <span id="loadingPageNumber">1</span>
+          </p>
+          <button id="cancelLoadingBtn"
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm mt-3">
+            Cancel
+          </button>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
 
-
+<div id="loadingSection" class="text-center d-none py-4">
+  <div class="d-flex flex-column align-items-center">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem; border-width: .35rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <h5 class="mt-4 fw-semibold">
+      Loading your ledger history...
+    </h5>
+    <p class="mt-2 mb-1 text-muted small">
+      This may take a while, please do not close this page.
+    </p>
+    <button id="cancelLoadingBtn" type="button" class="btn btn-outline-light btn sm mt-3">
+      Cancel
+    </button>
+  </div>
+</div>
   
 <div id="background">
 
@@ -103,7 +155,7 @@
         <div class="card-body">
           <h5 class="card-title">1 Day</h5>
           <hr>
-          <p class="card-text">$33</p>
+          <p class="card-text" id="sum-1d">$0.00</p>
         </div>
       </div>
      </div> 
@@ -113,7 +165,7 @@
         <div class="card-body">
           <h5 class="card-title">7 Day</h5>
           <hr>
-          <p class="card-text">$242</p>
+          <p class="card-text" id="sum-7d">$0.00</p>
         </div>
       </div>
     </div>
@@ -123,7 +175,7 @@
         <div class="card-body">
           <h5 class="card-title">1 Month</h5>
           <hr>
-          <p class="card-text">$883</p>
+          <p class="card-text" id="sum-30d">$0.00</p>
         </div>
       </div>
     </div>
@@ -133,7 +185,7 @@
         <div class="card-body">
           <h5 class="card-title">1 Year</h5>
           <hr>
-          <p class="card-text">$6,410</p>
+          <p class="card-text" id="sum-365d">$0.00</p>
         </div>
       </div>
     </div>
@@ -143,7 +195,7 @@
         <div class="card-body">
           <h5 class="card-title">Lifetime</h5>
           <hr>
-          <p class="card-text">$92,802</p>
+          <p class="card-text" id="sum-lifetime">$0.00</p>
         </div>
       </div>
     </div>
